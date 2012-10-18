@@ -17,6 +17,8 @@ references:
 HTTP://RMP.APS.ORG/ABSTRACT/RMP/V84/I2/P449_1
 HTTP://RMP.APS.ORG/ABSTRACT/RMP/V67/I4/P893_1
 6. LATTICE QCD ON PCS? HTTP://WWW.SCIENCEDIRECT.COM/SCIENCE/ARTICLE/PII/S0920563201016395
+7. what is renormalization? http://arxiv.org/pdf/hep-ph/0506330v1.pdf
+
 
 
 TODO:
@@ -30,6 +32,7 @@ TODO:
 	    why 1/(2pi*a)**(N/2) doesnt work?
 
 	Calculate acceptance rate (so we can tune epsilon)
+
 
 todorht:
 
