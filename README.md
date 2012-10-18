@@ -11,6 +11,7 @@ references:
 http://rmp.aps.org/abstract/RMP/v84/i2/p449_1
 http://rmp.aps.org/abstract/RMP/v67/i4/p893_1
 6. lattice qcd on pcs? http://www.sciencedirect.com/science/article/pii/S0920563201016395
+7. what is renormalization? http://arxiv.org/pdf/hep-ph/0506330v1.pdf
 
 todorht:
 

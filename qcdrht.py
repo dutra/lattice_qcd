@@ -40,22 +40,21 @@ def S(j,x):         # harm. osc. S
     jm = (j-1) % N  # previous site 
     return a*x[j]**2/2 + x[j]*(x[j]-x[jp]-x[jm])/a 
 
-def compute_G(x,n): 
-    g = sum([x[j] * x[(j + n) % N] for j in range(N)])
-    return g/N 
+def compute_G(x): 
+    g = [sum([x[j] * x[(j + n) % N] for j in range(N)])/N for n in range(N)]
+    return g 
 
 def MCaverage(x,G): 
     update(x, 5 * N_cor)   # thermalize x
     for alpha in range(N_cf):     # loop on random paths 
         update(x, N_cor) 
-        for n in range(N): 
-            G[alpha][n] = compute_G(x,n) 
+        G[alpha] = compute_G(x)
     for n in range(N):            # compute MC averages 
-        avg_G = sum([G[alpha][n] for alpha in range(N_cf)]) / N_cf
+        avg_G = sum(G[alpha][n] for alpha in range(N_cf)) / N_cf
         #print("G(%d) = %g" % (n,avg_G) )
     return x, avg_G
 
-def bootstrap(G): 
+def bootstrap(G):
     N_cf = len(G) 
     # choose random config from G ensemble
     G_bootstrap = [G[randint(N_cf)] for i in range(N_cf)]
@@ -73,7 +72,7 @@ def bin(G,binsize):
 
 N = 20 
 N_cor = 20 
-N_cf = 1
+N_cf = 10
 a = 0.5 
 eps = 1.4 
 
@@ -87,16 +86,9 @@ x, avg_G = MCaverage(x,G)
 # To test the binning and bootstrap codes add the following
 # to the the file: 
 
-def avg(G):         # MC avg of G 
-    return sum(G,axis=0)/len(G) 
-
-def sdev(G):        # std dev of G 
-    g = asarray(G) 
-    return absolute(avg(g**2)-avg(g)**2)**0.5
-
-print('avg G\n',avg(G) )
-print('avg G (binned)\n',avg(bin(G,4)) )
-print('avg G (bootstrap)\n',avg(bootstrap(G)) )
+print('avg G\n', G.mean(axis=0) )
+print('avg G (binned)\n', mean(bin(G,4),axis=0) )
+print('avg G (bootstrap)\n', mean(bootstrap(G),axis=0) )
 
 # The average of the binned copy of G should be the same as the 
 # average of G itself; the average of the bootstrap copy should 
@@ -106,7 +98,7 @@ print('avg G (bootstrap)\n',avg(bootstrap(G)) )
 # This is done by adding code to compute ∆E(t): 
 
 def deltaE(G):      # Delta E(t)
-    avgG = avg(G)
+    avgG = mean(G, axis=0)
     adE = log(absolute(avgG[:-1]/avgG[1:]))
     return adE/a 
 
@@ -125,7 +117,7 @@ def bootstrap_deltaE(G,nbstrap=100):    # Delta E + errors
         g = bootstrap(G) 
         bsE.append(deltaE(g)) 
     bsE = array(bsE) 
-    sdevE = sdev(bsE)               # spread of deltaE's 
+    sdevE = bsE.std(axis=0)               # spread of deltaE's 
     print("\n%2s %10s %10s" % ("t","Delta E(t)","error") )
     print(2 *"-" )
     for i in range(int(len(avgE)/2)): 
