@@ -58,6 +58,7 @@ def bootstrap(G):
     N_cf = len(G) 
     # choose random config from G ensemble
     G_bootstrap = [G[randint(N_cf)] for i in range(N_cf)]
+    #G_bootstrap = array(G)[randint(N_cf, size=N_cf)]
     return G_bootstrap 
 
 def bin(G,binsize): 
