@@ -3,14 +3,33 @@ lattice_qcd
 
 references:
 
-1. lattice QCD for novices http://arxiv.org/abs/hep-lat/0506036
+	GPU Implementation of the Feynman Path-Integral Method in Quantum Mechanics
+            publications.lib.chalmers.se/records/fulltext/144105.pdf
+
+	Lattice QCD for novices 
+	    http://arxiv.org/abs/hep-lat/0506036
+
 2. lattice QCD for people who want results http://arxiv.org/pdf/hep-lat/0509046.pdf
 3. QCD on the lattice http://www.springerlink.com/content/978-3-642-01849-7/contents/
 4. http://scholar.google.com/scholar?q=lattice+qcd&btnG=&hl=en&as_sdt=0%2C22
-5. rev.mod.physics http://publish.aps.org/search?c%5B%5D%5Boperator%5D=AND&c%5B%5D%5Bfield%5D=author&c%5B%5D%5Bvalue%5D=&c%5B%5D%5Boperator%5D=AND&c%5B%5D%5Bfield%5D=abstitle&c%5B%5D%5Bvalue%5D=%22lattice+qcd%22&c%5B%5D%5Boperator%5D=AND&c%5B%5D%5Bfield%5D=fulltext&c%5B%5D%5Bvalue%5D=&sort=recent&per_page=25&start_date=&end_date=
-http://rmp.aps.org/abstract/RMP/v84/i2/p449_1
-http://rmp.aps.org/abstract/RMP/v67/i4/p893_1
-6. lattice qcd on pcs? http://www.sciencedirect.com/science/article/pii/S0920563201016395
+5. rev.mod.physics http://scholar.google.com/scholar?q=lattice+qcd&btnG=&hl=en&as_sdt=0%2C22
+5. rev.mod.physics http://goo.gl/dODgR
+HTTP://RMP.APS.ORG/ABSTRACT/RMP/V84/I2/P449_1
+HTTP://RMP.APS.ORG/ABSTRACT/RMP/V67/I4/P893_1
+6. LATTICE QCD ON PCS? HTTP://WWW.SCIENCEDIRECT.COM/SCIENCE/ARTICLE/PII/S0920563201016395
+
+
+TODO:
+	* FIND OUT PARAMETERS RELATION:
+       	    It seems that if you increase N, you also have to increase nrepeat so the paths are not correlated and it works. So, either (N=10,nrepeat=10) or (N=50,nrepeat=100) works well. Using a=10 for now.
+       	    A nice graph about parameters can be found on GPU Implem p. 75 (it relates a to N)
+
+	* Implement error function (bin,bootstraps)
+
+	Normalization
+	    why 1/(2pi*a)**(N/2) doesnt work?
+
+	Calculate acceptance rate (so we can tune epsilon)
 
 todorht:
 
@@ -25,3 +44,5 @@ todorht:
 thoughts:
 1. heisenberg picture correlation functions
 2. 
+
+
