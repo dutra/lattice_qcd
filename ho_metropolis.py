@@ -48,11 +48,11 @@ def MCaverage(x,G):
 
 
 
-N = 10 # number of time intervals ~ a
+N = 7 # number of time intervals ~ a
 nrepeat = 10 # number of iterations for each path #N_cor # 1/sqrt(a)
-npaths = 1000 # number of paths
-a = 10 # T/N 1/nrepeat^2
-eps = 0.5 # 1/sqrt(a)
+npaths = 200000 # number of paths
+a = 0.5 # T/N 1/nrepeat^2
+eps = 2 # 1/sqrt(a)
 
 
 
@@ -71,24 +71,16 @@ poss = []
 
 
 # do the simulation:
-for i in arange(0,1,0.1) :
-    aposs = []
-    for j in range(5) :
+for i in arange(0,2,0.05) :
 
         G = zeros(npaths, dtype=float)
         x = start_x(i)
-        aposs.append(MCaverage(x,G))
-        print(i,aposs[-1],acceptance/total*100)
+        poss.append(MCaverage(x,G))
+        print(i,0.0102659822546843*poss[-1],acceptance/total*100)
         total = 0
         acceptance = 0
 
-    print("-----------------")
-    poss.append(avg(aposs))
-    print("i: {0}, pos: {1}, sdev: {2}".format(i,poss[-1],sdev(aposs)))
-    print("-----------------")
-
-
 print(time() - tic)
 plot(poss,'bo')
-savefig("pic{0}-N{1}_nr{2}_np{3}_a{4}_e{5:.1f}.png".format(strftime("%m%d-%H%M"),N,nrepeat,npaths,a,eps))
+#savefig("pic{0}-N{1}_nr{2}_np{3}_a{4}_e{5:.1f}.png".format(strftime("%m%d-%H%M"),N,nrepeat,npaths,a,eps))
 show()
