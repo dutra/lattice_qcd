@@ -9,7 +9,7 @@
 int N = 8;
 int npaths = 200000;
 int nrepeat = 5;
-double a = 0.5;
+double a = 0.1;
 
 void update(double *, int);
 double S(int, double *);
