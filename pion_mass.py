@@ -6,8 +6,8 @@ times, c = loadtxt("data/px0py0pz0_pi_Nsrc174_Ncfg739_32x256_um0p0840_sm0p0743_P
         unpack = 1, skiprows=1)
 
 num = len(times)/256
-times = split(times, num)
-c = array(split(c, num))
+times = times.reshape((num,256))
+c = c.reshape((num,256))
 #for i in range(4):
     #figure()
     ##plot(times[i], log(c[i] / roll(c[i],-1)))
