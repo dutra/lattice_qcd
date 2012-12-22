@@ -37,6 +37,6 @@ plot(time, func(time,*popt))
 #calculating chi square
 cfitted = func(time, *popt)
 reducedchi2 = sum(((cmean - cfitted)/cstd)**2 / (cmean.size - 2))
-print reducedchi2
+print(reducedchi2)
 
-raw_input()
+input()
